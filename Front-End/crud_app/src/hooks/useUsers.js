@@ -1,32 +1,37 @@
-import { useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import api from "../api/api";
 import { useEffect } from "react";
 
 export const useUsers = ({ showSnackbar }) => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
-    const [formData, setFormData] = useState({});
-    const [errors, setErrors] = useState({});
+  const [formData, setFormData] = useState({});
+  const [errors, setErrors] = useState({});
 
+  const snackbarRef = useRef(showSnackbar);
 
   useEffect(() => {
-    fetchUsers();
-  }, []);
+    snackbarRef.current = showSnackbar;
+  }, [showSnackbar]);
 
-  const fetchUsers = async () => {
+  const fetchUsers = useCallback(async () => {
     try {
       setLoading(true);
       const data = await api.getUsers();
       setUsers(data);
     } catch (error) {
-      showSnackbar("Failed to load users", "error");
-      console.error("Error fetching users:", error);
+      snackbarRef.current?.("Failed to load users", "error");
+      console.error(error);
     } finally {
       setLoading(false);
     }
-  };
+  }, []); // ✅ no changing dependencies
 
-    const handleDelete = async (id) => {
+  useEffect(() => {
+    fetchUsers();
+  }, [fetchUsers]); // runs ONCE on mount
+
+  const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this user?")) {
       try {
         await api.deleteUser(id);
@@ -39,7 +44,7 @@ export const useUsers = ({ showSnackbar }) => {
     }
   };
 
-    const handleInputChange = (fieldName, value) => {
+  const handleInputChange = (fieldName, value) => {
     setFormData((prev) => ({ ...prev, [fieldName]: value }));
 
     // Clear error when user starts typing
@@ -48,5 +53,16 @@ export const useUsers = ({ showSnackbar }) => {
     }
   };
 
-  return { users, setUsers, loading, fetchUsers, handleDelete, handleInputChange, formData, setFormData, errors, setErrors };
+  return {
+    users,
+    setUsers,
+    loading,
+    fetchUsers,
+    handleDelete,
+    handleInputChange,
+    formData,
+    setFormData,
+    errors,
+    setErrors,
+  };
 };
