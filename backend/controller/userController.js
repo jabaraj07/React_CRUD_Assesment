@@ -28,13 +28,6 @@ exports.createUser = async (req, res) => {
       return res.status(400).json({ message: "User data is required" });
     }
 
-      // const userData = new User({
-      //   firstName,
-      //   lastName,
-      //   email,
-      //   phoneNumber,
-      // });
-
     const user = await User.create(req.body);
     res.status(201).json(user);
   } catch (error) {

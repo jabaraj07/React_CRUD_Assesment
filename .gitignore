@@ -4,9 +4,10 @@ npm-debug.log
 .env
 
 # frontend build
-Front-End/dist
-Front-End/build
-
+Front-End/crud_app/dist
+Front-End/crud_app/build
+Front-End/crud_app/node_modules
+Front-End/crud_app/.env
 # backend build
 backend/dist
 
