@@ -24,7 +24,7 @@ This project is a full-stack CRUD application with a dynamic form system, where 
 ---
   
 ## 1️⃣ setup Instructions
-```md
+
 ### Clone the repository
 ```bash
 git clone <your-github-repo-url>
@@ -38,7 +38,7 @@ cd backend
 npm install
 ```
 ---
-# Create a .env file:
+## Create a .env file:
 ```bash
 PORT=5000
 MONGO_URI=your_mongodb_connection_string
@@ -58,8 +58,9 @@ http://localhost:5000
 ```bash
 cd Front-End/crud_app
 npm install
+```
 
-Create .env file:
+## Create .env file:
 ```bash
 REACT_APP_API_URL=http://localhost:5000/api
 ```
@@ -136,3 +137,9 @@ strict: false
 - Duplicate email/phone handled gracefully
 
 ---
+
+## Mock API Setup
+
+- This project does not use a mock API.  
+- A real backend built with Node.js, Express, and MongoDB is used for all API interactions.
+
