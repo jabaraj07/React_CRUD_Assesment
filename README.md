@@ -1,9 +1,9 @@
-##Dynamic User Management CRUD App
+## Dynamic User Management CRUD App
 
 This project is a full-stack CRUD application with a dynamic form system, where frontend form fields are generated from a schema and backend accepts flexible user data with validation for unique fields.
 
 ---
-##Tech Stack
+## Tech Stack
 
 ### Frontend
 - React
@@ -23,34 +23,38 @@ This project is a full-stack CRUD application with a dynamic form system, where 
 
 ---
   
-#setup Instructions
-
+## 1️⃣ setup Instructions
+```md
 ### Clone the repository
 ```bash
 git clone <your-github-repo-url>
 cd Dynamic_Form_Project
+```
 
-2️⃣ Backend Setup
+
+## 2️⃣ Backend Setup
 ```bash
 cd backend
 npm install
-
+```
 ---
-#Create a .env file:
+# Create a .env file:
 ```bash
 PORT=5000
 MONGO_URI=your_mongodb_connection_string
 FRONTEND_URL=https://your-vercel-frontend-url
-
+```
 ---
-Start backend:
-
+## Start backend:
+```bash
 npm start
+```
+Backend runs at:
+```bash
+http://localhost:5000
+```
 
-
-Backend runs at: http://localhost:5000
-
-3️⃣ Frontend Setup
+## 3️⃣ Frontend Setup
 ```bash
 cd Front-End/crud_app
 npm install
@@ -58,13 +62,16 @@ npm install
 Create .env file:
 ```bash
 REACT_APP_API_URL=http://localhost:5000/api
+```
 
-
-Start frontend:
-
+## Start frontend:
+```bash
 npm start
-
-Frontend runs at: http://localhost:3000
+```
+Frontend runs at: 
+```bash
+http://localhost:3000
+```
 ---
 ## How to Add New Fields to the Form
 
@@ -73,6 +80,7 @@ The form is schema-driven, meaning input fields are generated dynamically from a
 📂 Schema Location
 ```bash
 src/schema/formSchema.js
+```
 
 ## Example: Adding a new field
 ```bash
@@ -83,6 +91,7 @@ src/schema/formSchema.js
   placeholder: "Enter address",
   required: false
 }
+```
 
 What happens automatically?
 
@@ -103,6 +112,7 @@ Additional fields are allowed using:
 
 ```bash
 strict: false
+```
 
 -Email and phone number are optional
 -If provided, uniqueness is enforced
@@ -111,18 +121,24 @@ strict: false
 
 ## Assumptions & Design Decisions
 
--Frontend controls which fields are visible
--Backend accepts flexible data structure
--Duplicate email or phone number returns 409 Conflict
--Custom hooks are used to keep components clean
--API logic is separated from UI logic
+- Frontend controls which fields are visible
+- Backend accepts flexible data structure
+- Duplicate email or phone number returns 409 Conflict
+- Custom hooks are used to keep components clean
+- API logic is separated from UI logic
 
 ---
 
 ## Error Handling
 
--Backend returns proper HTTP status codes
--Frontend shows error messages using snackbar alerts
--Duplicate email/phone handled gracefully
+- Backend returns proper HTTP status codes
+- Frontend shows error messages using snackbar alerts
+- Duplicate email/phone handled gracefully
 
 ---
+
+
+## Mock API Setup
+
+- is project does not use a mock API.  
+- real backend built with Node.js, Express, and MongoDB is used for all API interactions.
